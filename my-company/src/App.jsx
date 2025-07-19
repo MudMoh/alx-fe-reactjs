@@ -16,10 +16,9 @@ function App() {
 				<div style={{ maxWidth: "800px", margin: "0 auto" }}>
 					<Routes>
 						<Route path="/" element={<Home />} />
-						{/* <Route path="./components/Home" element={<Home />} /> */}
-						<Route path="./components/About" element={<About />} />
-						<Route path="./components/Services" element={<Services />} />
-						<Route path="./components/Contact" element={<Contact />} />
+						<Route path="/about" element={<About />} />
+						<Route path="/services" element={<Services />} />
+						<Route path="/contact" element={<Contact />} />
 					</Routes>
 				</div>
 				<Footer />
