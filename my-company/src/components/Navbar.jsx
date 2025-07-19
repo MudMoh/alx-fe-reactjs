@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 const navStyle = {
 	display: "flex",
+	justifyContent: "center",
 	gap: "20px",
 	padding: "16px",
-	background: "#222",
+	backgroundColor: "#222",
 	color: "#fff",
 	marginBottom: "24px",
 };
