@@ -4,11 +4,13 @@ import React from "react";
 import useRecipeStore from "./recipeStore";
 
 const RecipeList = () => {
-	const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+	const { recipes, filteredRecipes, searchTerm } = useRecipeStore();
+
+	const displayedRecipes = searchTerm ? filteredRecipes : recipes;
 
 	return (
 		<ul>
-			{filteredRecipes.map((recipe) => (
+			{displayedRecipes.map((recipe) => (
 				<li key={recipe.id}>
 					<h2>{recipe.title}</h2>
 					<p>{recipe.description}</p>
