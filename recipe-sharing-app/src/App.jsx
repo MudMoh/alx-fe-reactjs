@@ -6,6 +6,10 @@ import AddRecipeForm from "./components/AddRecipeForm";
 import EditRecipeForm from "./components/EditRecipeForm";
 import DeleteRecipeButton from "./components/DeleteRecipeButton";
 import SearchBar from "./components/SearchBar";
+import FavoritesList from "./components/FavoritesList";
+import RecommendationsList from "./components/RecommendationsList";
+
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import "./App.css";
 function App() {
@@ -13,6 +17,7 @@ function App() {
 		<>
 			<SearchBar />
 			<RecipeList />
+
 			<h1>Recipe Sharing App</h1>
 			<BrowserRouter>
 				<Routes>
@@ -34,6 +39,10 @@ function App() {
 					/>
 				</Routes>
 			</BrowserRouter>
+			<ErrorBoundary>
+				<FavoritesList />
+			</ErrorBoundary>
+			<RecommendationsList />
 		</>
 	);
 }
