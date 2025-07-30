@@ -10,6 +10,6 @@ const github = axios.create({
   },
 });
 
-export const searchUser = (username) => {
+export const fetchUserData = (username) => {
   return github.get(`/users/${username}`);
 };
