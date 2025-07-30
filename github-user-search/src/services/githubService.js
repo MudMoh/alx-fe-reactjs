@@ -10,13 +10,13 @@ const github = axios.create({
   },
 });
 
-export const fetchUserData = (query, location, repos) => {
+export const fetchUserData = (query, location, minRepos) => {
   let q = query;
   if (location) {
     q += `+location:${location}`;
   }
-  if (repos) {
-    q += `+repos:>=${repos}`;
+  if (minRepos) {
+    q += `+repos:>=${minRepos}`;
   }
   return github.get(`/search/users?q=${q}`);
 };
