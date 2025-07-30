@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { fetchUserData } from "../services/githubService";
-import UserProfile from "./UserProfile";
 
 const Search = () => {
 	const [username, setUsername] = useState("");
@@ -36,7 +35,16 @@ const Search = () => {
 			</form>
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
-			{user && <UserProfile user={user} />}
+			{user && (
+				<div>
+					<img src={user.avatar_url} alt={`${user.login} avatar`} width="100" />
+					<h2>{user.name}</h2>
+					<p>{user.bio}</p>
+					<a href={user.html_url} target="_blank" rel="noopener noreferrer">
+						View Profile on GitHub
+					</a>
+				</div>
+			)}
 		</div>
 	);
 };
