@@ -3,12 +3,51 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g pecorino cheese",
+      "50g parmesan cheese",
+      "Freshly ground black pepper"
+    ],
+    "instructions": [
+      "Cook the spaghetti according to package instructions.",
+      "While the pasta is cooking, fry the pancetta in a pan until crisp.",
+      "In a bowl, whisk the eggs and mix in the grated cheeses.",
+      "Drain the pasta, reserving some of the pasta water.",
+      "Quickly mix the hot pasta with the pancetta, then stir in the egg and cheese mixture.",
+      "Add a little pasta water if needed to create a creamy sauce. Season with black pepper and serve immediately."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g chicken breast, cut into chunks",
+      "1 cup plain yogurt",
+      "1 tbsp lemon juice",
+      "2 tsp ground cumin",
+      "2 tsp paprika",
+      "1 tsp garam masala",
+      "1 tbsp grated ginger",
+      "2 cloves garlic, minced",
+      "1 tbsp vegetable oil",
+      "1 large onion, chopped",
+      "400g can of crushed tomatoes",
+      "1 cup heavy cream"
+    ],
+    "instructions": [
+      "In a bowl, combine yogurt, lemon juice, cumin, paprika, garam masala, ginger, and garlic.",
+      "Add the chicken chunks and marinate for at least 1 hour.",
+      "Heat oil in a large pan over medium-high heat. Add the chicken and cook until browned on all sides.",
+      "Add the chopped onion and cook until softened.",
+      "Stir in the crushed tomatoes and bring to a simmer. Cook for 10 minutes.",
+      "Reduce the heat to low and stir in the heavy cream. Simmer for another 5 minutes, or until the sauce has thickened.",
+      "Serve hot with rice or naan bread."
+    ]
   }
 ]
