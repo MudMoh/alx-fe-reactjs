@@ -81,7 +81,7 @@ const AddRecipeForm = () => {
 				<label
 					htmlFor="instructions"
 					className="block text-sm font-medium text-gray-700">
-					Steps
+					steps
 				</label>
 				<textarea
 					id="instructions"
