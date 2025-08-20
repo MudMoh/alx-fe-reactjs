@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const initialTodos = [
 	{ id: 1, text: "Learn React", completed: false },
