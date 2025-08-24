@@ -6,7 +6,6 @@ import { RecipeCard } from "./components/RecipeCard";
 import { RecipeDetail } from "./components/RecipeDetail";
 import { RecipeList } from "./components/RecipeList";
 
-
 function AppWrapper() {
 	const [selectedRecipe, setSelectedRecipe] = useState(null);
 	const [recipes, setRecipes] = useState([]);
@@ -79,7 +78,10 @@ function AppWrapper() {
 				<Route
 					path="/"
 					element={
-						<LandingPage onGetStarted={handleGetStarted} categories={categories} />
+						<LandingPage
+							onGetStarted={handleGetStarted}
+							categories={categories}
+						/>
 					}
 				/>
 				<Route
