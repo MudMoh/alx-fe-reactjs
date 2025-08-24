@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { LandingPage } from "./components/LandingPage";
 import { Header } from "./components/Header";
 import { RecipeCard } from "./components/RecipeCard";
 import { RecipeDetail } from "./components/RecipeDetail";
 import { RecipeList } from "./components/RecipeList";
 
-export default function App() {
+
+function AppWrapper() {
 	const [selectedRecipe, setSelectedRecipe] = useState(null);
-	const [currentView, setCurrentView] = useState("landing");
 	const [recipes, setRecipes] = useState([]);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedCategory, setSelectedCategory] = useState(null);
 	const [categories, setCategories] = useState([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchRecipes = async () => {
@@ -45,21 +47,21 @@ export default function App() {
 
 	const handleRecipeClick = (recipe) => {
 		setSelectedRecipe(recipe);
-		setCurrentView("detail");
+		navigate(`/recipe/${recipe.idMeal}`);
 	};
 
 	const handleGetStarted = () => {
-		setCurrentView("list");
+		navigate("/recipes");
 	};
 
 	const handleBackToHome = () => {
-		setCurrentView("landing");
 		setSelectedRecipe(null);
+		navigate("/");
 	};
 
 	const handleBackToList = () => {
-		setCurrentView("list");
 		setSelectedRecipe(null);
+		navigate("/recipes");
 	};
 
 	const handleSearchChange = (term) => {
@@ -70,63 +72,74 @@ export default function App() {
 		setSelectedCategory(category);
 	};
 
-	// Render landing page
-	if (currentView === "landing") {
-		return (
-			<LandingPage onGetStarted={handleGetStarted} categories={categories} />
-		);
-	}
-
-	// Render recipe detail page
-	if (currentView === "detail" && selectedRecipe) {
-		return (
-			<div>
-				<Header onBackToHome={handleBackToHome} showBackButton />
-				<div className="pt-0">
-					<RecipeDetail recipe={selectedRecipe} onBack={handleBackToList} />
-				</div>
-			</div>
-		);
-	}
-
-	// Render recipe list page
 	return (
-		<div className="min-h-screen bg-background ">
+		<>
 			<Header onBackToHome={handleBackToHome} />
-			<div className="container mx-auto px-4 py-8">
-				<div className="text-center mb-8">
-					<h1 className="mb-4">Browse Recipes</h1>
-					<p className="text-muted-foreground max-w-2xl mx-auto">
-						Discover delicious recipes from around the world. Search by name,
-						browse by category, and find your next favorite meal.
-					</p>
-				</div>
-				<RecipeList
-					searchTerm={searchTerm}
-					onSearchChange={handleSearchChange}
-					selectedCategory={selectedCategory}
-					onCategoryChange={handleCategoryChange}
-					categories={categories}
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<LandingPage onGetStarted={handleGetStarted} categories={categories} />
+					}
 				/>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-					{recipes.map((recipe) => (
-						<RecipeCard
-							key={recipe.idMeal}
-							recipe={recipe}
-							onClick={() => handleRecipeClick(recipe)}
-						/>
-					))}
-				</div>
+				<Route
+					path="/recipes"
+					element={
+						<div className="min-h-screen bg-background">
+							<div className="container mx-auto px-4 py-8">
+								<div className="text-center mb-8">
+									<h1 className="mb-4">Browse Recipes</h1>
+									<p className="text-muted-foreground max-w-2xl mx-auto">
+										Discover delicious recipes from around the world. Search by
+										name, browse by category, and find your next favorite meal.
+									</p>
+								</div>
+								<RecipeList
+									searchTerm={searchTerm}
+									onSearchChange={handleSearchChange}
+									selectedCategory={selectedCategory}
+									onCategoryChange={handleCategoryChange}
+									categories={categories}
+								/>
+								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+									{recipes.map((recipe) => (
+										<RecipeCard
+											key={recipe.idMeal}
+											recipe={recipe}
+											onClick={() => handleRecipeClick(recipe)}
+										/>
+									))}
+								</div>
 
-				{recipes.length === 0 && (
-					<div className="text-center py-12">
-						<p className="text-muted-foreground">
-							No recipes found matching your criteria. Try adjusting your search
-							or filters.
-						</p>
-					</div>
-				)}
-			</div>
-		</div>
+								{recipes.length === 0 && (
+									<div className="text-center py-12">
+										<p className="text-muted-foreground">
+											No recipes found matching your criteria. Try adjusting
+											your search or filters.
+										</p>
+									</div>
+								)}
+							</div>
+						</div>
+					}
+				/>
+				<Route
+					path="/recipe/:id"
+					element={
+						selectedRecipe && (
+							<RecipeDetail recipe={selectedRecipe} onBack={handleBackToList} />
+						)
+					}
+				/>
+			</Routes>
+		</>
+	);
+}
+
+export default function App() {
+	return (
+		<BrowserRouter>
+			<AppWrapper />
+		</BrowserRouter>
 	);
 }

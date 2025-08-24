@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 // These imports are assumed to be available from your project
 import { Button } from "./ui/Button";
 import { Card, CardContent } from "./ui/Card";
@@ -135,7 +136,7 @@ export function LandingPage({ onGetStarted }) {
 							</div>
 						</div>
 
-						<h1 className="mb-6 text-5xl sm:text-7xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+						<h1 className="mb-6 text-4xl sm:text-7xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
 							Recipe Discovery
 						</h1>
 
@@ -192,7 +193,7 @@ export function LandingPage({ onGetStarted }) {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 						{featuredRecipes.map((recipe, index) => (
 							<Card
 								key={index}
@@ -246,7 +247,7 @@ export function LandingPage({ onGetStarted }) {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 						{features.map((feature, index) => (
 							<Card
 								key={index}
@@ -353,5 +354,25 @@ export function LandingPage({ onGetStarted }) {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+function AppWrapper() {
+	const navigate = useNavigate();
+
+	// ...all your state and handlers...
+
+	const handleGetStarted = () => {
+		navigate("/recipes");
+	};
+
+	// ...rest of your App code, pass handleGetStarted to LandingPage...
+}
+
+export default function App() {
+	return (
+		<BrowserRouter>
+			<AppWrapper />
+		</BrowserRouter>
 	);
 }
